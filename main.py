@@ -17,6 +17,8 @@ ofsetB = 1
 
 motor = Motor(BIN2,BIN1,STBY,AIN1,AIN2,PWMA,PWMB,ofsetA,ofsetB)
 
+print("Running motor ...")
+
 motor.forward(400)
 sleep(10)
 
@@ -42,4 +44,9 @@ motor.run()
 sleep(5)
 
 
+
+print("End running motor ...")
+
+
+sleep(20)
 
