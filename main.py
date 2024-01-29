@@ -1,4 +1,8 @@
 #sample main.py for testing Microphyton for ESP32 for Sparkfun TB6612FNG Motor Drive for two motors
+import network
+import ugit
+import time
+import machine
 from machine import Pin, PWM
 from time import sleep
 from TB6612FNG import Motor
@@ -68,12 +72,10 @@ sta.disconnect()        # Disconnect from last connected WiFi SSID
 ac = ubinascii.hexlify(network.WLAN().config('mac'),':').decode()
 print("MAC Address:", ac)
 
-import network
-import espnow
 
 def espnow_rx():
     #config UART
-    uart = UART(0, baudrate=115200)
+
 
     # A WLAN interface must be active to send()/recv()
     sta = network.WLAN(network.STA_IF)
@@ -96,31 +98,31 @@ def espnow_rx():
                 print("stop 0:")
                 
                 onboardled.value(1)
-                time.sleep(1)
+                #time.sleep(1)
                 onboardled.value(0)
             elif befehl == 1:
-                motor.forward(400)
+                motor.forward(800)
                 onboardled.value(1)
-                time.sleep(1)
+                #time.sleep(1)
                 onboardled.value(0)
                 print("forwaert 1:")
             elif befehl == 2:
-                motor.backward(400)
+                motor.backward(800)
                 onboardled.value(1)
-                time.sleep(1)
+                #time.sleep(1)
                 onboardled.value(0)
                 print("rueckwaerts 2:")
             elif befehl == 3:
-                motor.left(200)
+                motor.left(500)
                 #motor.right(200)
                 print("links 3:")
                 onboardled.value(1)
-                time.sleep(1)
+                #time.sleep(1)
                 onboardled.value(0)
             elif befehl == 4:
-                motor.right(200)
+                motor.right(500)
                 onboardled.value(1)
-                time.sleep(1)
+                #time.sleep(1)
                 onboardled.value(0)
                 # motor.right(200)
                 print("rechts 4:")
@@ -135,6 +137,8 @@ def espnow_rx():
          #       print(msg)
          #       print(msg[0])
          #       print(binascii.a2b_base64(msg))
+
+espnow_rx()
 
 if __name__ == "__main__":
     espnow_rx()
